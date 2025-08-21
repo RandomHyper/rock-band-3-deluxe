@@ -78,6 +78,8 @@ DX_CURRENT_SONG_CLEAR
 {set $dx_instruments_aim_slot_3 (guitar real_guitar keys drum vocals)}
 {set $dx_instruments_aim_slot_4 (guitar real_guitar keys drum vocals)}
 
+{set $dx_slot_restart_required FALSE}
+
 {set $dx_current_free_cam "Free camera: off"}
 {set $overshell_showing TRUE}
 {set $dx_stored_outro_vignette FALSE}
