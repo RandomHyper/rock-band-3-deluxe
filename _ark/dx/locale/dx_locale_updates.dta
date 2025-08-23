@@ -1885,6 +1885,7 @@
 (cal_audio_desc_pad "This test determines the amount of Audio Latency in your system. Every time you hear a tick, press the A button.")
 #endif
 (calibration_skip "Continue")
+(choose_setlist "Play a Setlist / Battle")
 #ifdef HX_PS3
 (community_no_server_warning "Couldn't connect to GoCentral. \n\nYou won't be able to access the leaderboards.  Continue anyway?")
 #endif
