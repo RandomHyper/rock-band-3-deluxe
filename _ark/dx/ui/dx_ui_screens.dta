@@ -256,6 +256,7 @@
       kDataUnhandled
    )
    (component_scroll ($component $user)
+      {set $probeforfinder TRUE}
       {$this push_highlight_to_library}
       kDataUnhandled
    )
