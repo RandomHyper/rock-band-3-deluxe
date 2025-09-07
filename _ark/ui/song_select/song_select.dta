@@ -3044,6 +3044,7 @@
          ($primary "")
          ($secondary "")
          ($option "")
+         ($platform_has_keyboard {|| {== $dx_detected_platform platform_rpcs3} {== $dx_detected_platform platform_ps3} {== $dx_detected_platform platform_wii}})
          {set $primary
             {switch $type
                (kNodeFunction select)
@@ -3140,8 +3141,18 @@
          {if $option
             {help.ihp set_action_token kAction_Option $option}
          }
-         {help.ihp set spacing 240}
-         {settings.ihp set_local_pos 180 0 -170}
+         {if_else $platform_has_keyboard
+            {do
+               {help.ihp set (config 1 secondary_token) help_search_keyboard}
+               {help.ihp set spacing 255}
+               {help.ihp set_local_pos_index 0 -395}
+            }
+            {do
+               {help.ihp set spacing 240}
+               {help.ihp set_local_pos_index 0 -380}
+            }
+         }
+         {settings.ihp set_local_pos_index 0 180}
       }
    )
    (set_mini_leaderboard_showing
