@@ -1266,8 +1266,10 @@
 (song_search "Song Search")
 (song_search_desc "Search for Song Title or Artist Name")
 (song_search_title "Song/Artist")
-(song_cache_generate_button "Generate Search Cache")
-(song_cache_generate_desc "Your search cache is missing or outdated. Would you like to (re)generate it? This will take a while, especially on console.")
+(search_cache_generate_button "Generate Search Cache")
+(search_cache_generate_desc "Your search cache is missing or outdated. Would you like to (re)generate it? This will take a while, especially on console.")
+(search_cache_generate_starting "Starting search cache generation...")
+(search_cache_generate_progress "Generating search cache\n({string:done}/{string:total})")
 (the2020s "'20s Songs")
 
 ; Overdrive

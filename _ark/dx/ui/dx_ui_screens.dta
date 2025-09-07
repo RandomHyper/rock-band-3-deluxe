@@ -39,7 +39,7 @@
             {progress.lbl set width 400}
             {progress.lbl set height 40}
             {progress.lbl set alignment kMiddleCenter}
-            {progress.lbl set_token_fmt stringify "Starting search cache generation..."}
+            {progress.lbl set_token_fmt search_cache_generate_starting}
             {progress.lbl set_local_pos 0 -15 0}
             {all.grp add_object progress.lbl}
          }
@@ -48,7 +48,10 @@
       {dx_generate_search_cache}
    )
    (progress_msg ($done $total)
-      {progress.lbl set_token_fmt stringify {sprint "Generating search cache (" $done "/" $total ")"}}
+      {progress.lbl set_token_fmt search_cache_generate_progress (
+         (done {sprint $done})
+         (total {sprint $total})
+      )}
    )
    (generation_finished
       {ui pop_screen}
@@ -67,11 +70,11 @@
    (focus
       "customize.btn")
    (enter
-      {customize.btn set_token_fmt song_cache_generate_button}
+      {customize.btn set_token_fmt search_cache_generate_button}
       {continue.btn set_token_fmt cancel}
       ;{$this disable continue.btn}
       ;{continue.btn set_showing FALSE}
-      {description.lbl set_token_fmt song_cache_generate_desc})
+      {description.lbl set_token_fmt search_cache_generate_desc})
    (SELECT_MSG
       {switch $component
          (customize.btn {ui goto_screen dx_search_cache_generator_screen})
