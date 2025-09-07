@@ -1247,6 +1247,7 @@
 (dx_setlist_infinite_desc "You've played the endless setlists, now play all 3 back to back in this absolute gauntlet of a set.")
 (help_back "BACK")
 (help_search "HOLD FOR SEARCH")
+(help_keyboard "SHOW KEYBOARD")
 (os_blnk " ")
 (os_more_info_toggle_off "Hold for metadata: OFF")
 #ifdef HX_PS3

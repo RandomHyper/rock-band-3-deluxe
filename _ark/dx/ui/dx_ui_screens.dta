@@ -149,7 +149,7 @@
                {all.grp add_object search_icon.mesh}
                {new InlineHelp search.ihp}
                {search.ihp copy {song_select_panel find help.ihp} kCopyShallow}
-               {search.ihp set_config ((kAction_Confirm play_song) (kAction_Option 'SHOW KEYBOARD'))}
+               {search.ihp set_config ((kAction_Confirm play_song) (kAction_Option help_keyboard))}
                {search.ihp set_showing TRUE} ; not showing by default because help.ihp was hidden by activate_search
                {all.grp add_object search.ihp}
 
