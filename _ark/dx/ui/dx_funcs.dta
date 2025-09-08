@@ -10,7 +10,7 @@
    {set $metaartist {symbol $artist}}
    {set $verblist (verb_play verb_rock verb_jam verb_groove)}
    {set $num {random_int 0 10}}
-   {if_else {|| {> $num 6} {== $verb none}}
+   {if_else {|| {> $num 6} {== {localize $verb} "none"}}
       {set $metaverb {random_elem $verblist}}
       {set $metaverb $verb}
    }

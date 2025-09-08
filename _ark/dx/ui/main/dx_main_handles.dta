@@ -210,8 +210,7 @@
 
          {do
             ($keys (0 1 1 1 1 0 1 1 1 1 0 0))
-            ($num 11)
-            {foreach_int $i 0 $num
+            {foreach_int $i 0 {size $keys}
                {now_playing.anim set_key_val line1.lbl (alt_alpha) $i {elem $keys $i}}
                {now_playing.anim set_key_val line1.lbl (text_token) $i {if_else {>= $i 5} {eval $metaartist} {eval $metasong}}}
             }
@@ -219,7 +218,7 @@
 
          {now_playing.anim set rate kTaskUISeconds}
          {now_playing.anim set_frame 0}
-         {now_playing.anim animate (loop 0 11) (period 10) (units kTaskUISeconds)}
+         {now_playing.anim animate (loop 0 10) (period 10) (units kTaskUISeconds)}
       }
    )
    (dx_check_first_time
