@@ -15,7 +15,7 @@
 (
       {do
          ($num 178) ;increment this number based on the number of dx_splash entries in locale
-         {dx_splashtext.btn set text_token {localize {sprint "dx_splash_" {random_int 1 $num}}}} ; dx - set a random splash text
+         {dx_splashtext.btn set text_token {sprint "dx_splash_" {random_int 1 $num}}} ; dx - set a random splash text
       }
       {dx_splashtext.btn set_local_pos 197.5 0 140}
       {dx_splashtext.btn set_local_rot 35 12.5 -25}
