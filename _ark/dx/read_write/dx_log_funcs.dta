@@ -109,6 +109,9 @@
 {func
    dx_log_writer
    ($loglevel $dx_log_writer)
+   {if {exists dx_console}
+      {dx_console print_log {sprint $dx_log_writer}}
+   }
    {if
       {||
           {&& {== $loglevel essential} $dx_logging_essential}

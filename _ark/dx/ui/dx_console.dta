@@ -1,0 +1,115 @@
+{func split_str ($str $seperator)
+   {do
+      ($start_index 0)
+      ($buf {array 0})
+      ($finalindex 0)
+      {foreach_int $i 0 {strlen $str}
+         {do
+            ($elem {str_elem $str $i})
+            ;{dx_log_writer insane {sprint $elem}}
+            {if {== $elem $seperator}
+               {push_back $buf {substr $str $start_index {- $i $start_index}}}
+               {set $start_index {+ $i 1}}
+            }
+         }
+         {set $finalindex $i}
+      }
+      ;{dx_log_writer insane {sprint {array ($finalindex {- {strlen $str} 1})}}}
+      {if {!= $start_index {strlen $str}}
+         {push_back $buf {substr $str $start_index 999999}}
+      }
+      $buf
+   }
+}
+
+{func sym_array ($arr)
+   {do
+      ($buf {array 0})
+      {foreach $str $arr
+         {push_back $buf {symbol $str}}
+      }
+      $buf
+   }
+}
+
+{new RndDir dx_console
+    (input_field_accept ($field $text)
+        {$this print_log {sprint "] " $text}}
+        {set $text {sprint "{" $text "}"}}
+        {set $cmd {sym_array {split_str $text " "}}}
+        {write_file {sprint DX_GAMEDATA_ROOT "console_exec.dta"} $cmd}
+        {$this print_log {sprint {run {sprint DX_GAMEDATA_ROOT "console_exec.dta"}}}}
+        {cmd.input set_text ""}
+        {cmd.input set_focused}
+        ;{$this close}
+    )
+    (open
+        {slide.anim animate (dest 1) (period 0.25) (units kTaskUISeconds)}
+        {dx_keyboard_focus {object cmd.input}}
+        {$this set is_open TRUE}
+    )
+    (close
+        {slide.anim animate (dest 0) (period 0.25) (units kTaskUISeconds)}
+        {$this set is_open FALSE}
+        {dx_keyboard_unfocus}
+    )
+    (update_log
+        {do
+            ($buf "")
+            {foreach $line [loglines]
+                {set $buf {sprint $buf "\n" $line}}
+            }
+            {log.lbl set_token_fmt stringify $buf}
+        }
+    )
+    (print_log ($str)
+        {insert_elem [loglines] 0 $str}
+        {$this update_log}
+    )
+}
+{with dx_console
+    {$this set_local_pos 0 0 214}
+    {new Mesh bg.mesh}
+    {bg.mesh set_trans_parent $this}
+    {new Mat bg.mat}
+    {bg.mat set z_mode kZModeDisable}
+    {bg.mat set color {pack_color 0 0 0}}
+    {bg.mat set alpha 0.75}
+    {bg.mat set blend kBlendSrcAlpha}
+    {bg.mesh set mat bg.mat}
+    {dx_create_input_field cmd.input}
+    {cmd.input set_trans_parent $this}
+    {cmd.input set draw_order 1000}
+    {cmd.input set_local_pos -400 0 0}
+    {{cmd.input label} set width 840}
+    {cmd.input set unfocus_on_accept FALSE}
+    {cmd.input set_sink $this}
+    {dx_generate_quad_mesh bg.mesh 848 50}
+
+    {new BandLabel log.lbl}
+    {log.lbl set resource_name pentatonic_outline}
+    {log.lbl set text_size 15}
+    {log.lbl set alignment kTopLeft}
+    {log.lbl set width 835}
+    {log.lbl set height 400}
+    {log.lbl set_local_pos -400 0 -27}
+    {log.lbl set_trans_parent $this}
+
+    {new PropAnim slide.anim}
+
+    {slide.anim add_keys $this (position) kPropVector3}
+    {slide.anim set_key_val $this (position) 0 (0 0 269)}
+    {slide.anim set_key_val $this (position) 1 (0 0 214)}
+    {slide.anim set_interp_type $this (position) kPropHermite}
+
+    {slide.anim add_keys log.lbl (alpha) kPropFloat}
+    {slide.anim set_key_val log.lbl (alpha) 0 0}
+    {slide.anim set_key_val log.lbl (alpha) 1 1}
+    {slide.anim set_interp_type log.lbl (alpha) kPropHermite}
+
+    {slide.anim set_frame 0}
+
+    {$this set is_open FALSE}
+    {$this set loglines {array 0}}
+    {$this sync_objects}
+}

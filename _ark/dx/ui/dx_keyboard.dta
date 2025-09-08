@@ -136,7 +136,9 @@
             )
 
             (accept
-                {dx_keyboard_unfocus}
+                {if [unfocus_on_accept]
+                    {dx_keyboard_unfocus}
+                }
                 {[sink_obj] input_field_accept $this [buf]}
             )
 
@@ -242,11 +244,13 @@
             {text.lbl set alignment kMiddleLeft}
             {text.lbl set width 600}
             {text.lbl set height 40}
+            {text.lbl set draw_order 10}
             {text.lbl set_trans_parent $this}
             {$this set sink_obj kDataUnhandled}
             {$this set buf ""}
             {$this set caret 0}
             {$this set focused FALSE}
+            {$this set unfocus_on_accept TRUE}
             {$this set highlight_start -1}
             {$this set highlight_end -1}
             {$this set length_limit 32} ; Note: only applies to the virtual keyboard at the moment
@@ -263,7 +267,7 @@
             {highlight.mat set color {pack_color 1 0 0}}
             {highlight.mat set alpha 0.5}
             {highlight.mesh set mat highlight.mat}
-            {highlight.mesh set draw_order -1}
+            {highlight.mesh set draw_order 2}
             {highlight.mesh set_trans_parent $this}
             {highlight.mesh set_showing FALSE}
 
@@ -288,12 +292,27 @@
 }
 
 {func dx_keyboard_handler ($key $shift $ctrl $alt)
-    {if_else {!= {type $focused_input_field} kDataObject}
+    {if_else {== {char $key} "`"}
         {do
-            {{ui focus_panel} keyboard_msg $key $shift $ctrl $alt}
+            {with overshell
+                {unless {find_elem {slots.grp get_array objects} {object dx_console}}
+                    {slots.grp add_object dx_console}
+                }
+            }
+            {if_else {dx_console get is_open}
+                {dx_console close}
+                {dx_console open}
+            }
         }
         {do
-            {$focused_input_field keyboard_msg $key $shift $ctrl $alt}
+            {if_else {!= {type $focused_input_field} kDataObject}
+                {do
+                    {{ui focus_panel} keyboard_msg $key $shift $ctrl $alt}
+                }
+                {do
+                    {$focused_input_field keyboard_msg $key $shift $ctrl $alt}
+                }
+            }
         }
     }
 }
