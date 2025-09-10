@@ -6,8 +6,12 @@
       {foreach_int $i 0 {strlen $str}
          {do
             ($elem {str_elem $str $i})
+            ($inquotes FALSE)
             ;{dx_log_writer insane {sprint $elem}}
-            {if {== $elem $seperator}
+            {if {== $elem {char 34}}
+                {set $inquotes {! $inquotes}}
+            }
+            {if {&& {== $elem $seperator} {! $inquotes}}
                {push_back $buf {substr $str $start_index {- $i $start_index}}}
                {set $start_index {+ $i 1}}
             }
@@ -32,13 +36,32 @@
    }
 }
 
+{func console_clear
+    {script_task kTaskUISeconds (delay 0.016) (script
+        {dx_console clear_log}
+    )}
+}
+
+{func console_set_this ($obj)
+    {do 
+        ($new_this {object $obj})
+        {if_else $new_this
+            {do
+                {dx_console set console_this $new_this}
+                "Switched console context"
+            }
+            "Object not found"
+        }
+    }
+}
+
 {new RndDir dx_console
     (input_field_accept ($field $text)
         {$this print_log {sprint "] " $text}}
         {set $text {sprint "{" $text "}"}}
         {set $cmd {sym_array {split_str $text " "}}}
         {write_file {sprint DX_GAMEDATA_ROOT "console_exec.dta"} $cmd}
-        {$this print_log {sprint {run {sprint DX_GAMEDATA_ROOT "console_exec.dta"}}}}
+        {$this print_log {sprint {with [console_this] {run {sprint DX_GAMEDATA_ROOT "console_exec.dta"}}}}}
         {cmd.input set_text ""}
         {cmd.input set_focused}
         ;{$this close}
@@ -64,6 +87,10 @@
     )
     (print_log ($str)
         {insert_elem [loglines] 0 $str}
+        {$this update_log}
+    )
+    (clear_log
+        {set [loglines] {array 0}}
         {$this update_log}
     )
 }
@@ -111,5 +138,6 @@
 
     {$this set is_open FALSE}
     {$this set loglines {array 0}}
+    {$this set console_this $this}
     {$this sync_objects}
 }
