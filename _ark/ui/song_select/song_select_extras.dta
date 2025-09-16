@@ -141,6 +141,7 @@
          }
          {recoil.trg trigger}
          {music_library report_sort_and_filters}
+         {set $probeforfinder TRUE}
       }
    )
    (BUTTON_DOWN_MSG
