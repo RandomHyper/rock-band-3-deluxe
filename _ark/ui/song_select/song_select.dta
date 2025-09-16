@@ -1006,36 +1006,53 @@
       {diff_fade.anim set_frame 0}
       {diff_fade.anim animate (range $key1 $key2) (period 1) (units kTaskUISeconds)}
    )
+   (rings_show
+      ($show)
+      {foreach $entry
+         (
+            dx_guitar.lbl
+            dx_guitar_diff.lbl
+            dx_bass.lbl
+            dx_bass_diff.lbl
+            dx_keys.lbl
+            dx_keys_diff.lbl
+            dx_drum.lbl
+            dx_drum_diff.lbl
+            dx_vocals.lbl
+            dx_vocals_diff.lbl
+            dx_real_guitar.lbl
+            dx_real_guitar_diff.lbl
+            dx_real_bass.lbl
+            dx_real_bass_diff.lbl
+            dx_real_keys.lbl
+            dx_real_keys_diff.lbl
+            dx_real_drum.lbl
+            dx_real_drum_diff.lbl
+            dx_real_vocals.lbl
+            dx_real_vocals_diff.lbl
+            dx_song_name_length.lbl
+            dx_song_name_length_title.lbl
+            dx_song_name_album.lbl
+            dx_song_name_album_title.lbl
+            dx_song_name_genre.lbl
+            dx_song_name_genre_title.lbl
+            dx_song_name_year.lbl
+            dx_song_name_year_title.lbl
+         )
+         {$entry set_showing $show}
+      }
+      {foreach $entry
+         (guitar.idd bass.idd drum.idd vocals.idd harmony.idd keys.idd guitar_pro.idd bass_pro.idd drum_pro.idd keys_pro.idd)
+         {$entry set_showing {! $show}}
+      }
+
+   )
    (call_diffs
       ($token)
       DX_SET_DIFFS
       {if_else $dx_song_select_rings
-         {do
-            {guitar.idd set_showing FALSE}
-            {bass.idd set_showing FALSE}
-            {drum.idd set_showing FALSE}
-            {vocals.idd set_showing FALSE}
-            {harmony.idd set_showing FALSE}
-            {keys.idd set_showing FALSE}
-            {guitar_pro.idd set_showing FALSE}
-            {bass_pro.idd set_showing FALSE}
-            {drum_pro.idd set_showing FALSE}
-            {keys_pro.idd set_showing FALSE}            
-            ;{$this fade_diffs 0 1}
-         }
-         {do
-            {guitar.idd set_showing TRUE}
-            {bass.idd set_showing TRUE}
-            {drum.idd set_showing TRUE}
-            {vocals.idd set_showing TRUE}
-            {harmony.idd set_showing TRUE}
-            {keys.idd set_showing TRUE}
-            {guitar_pro.idd set_showing TRUE}
-            {bass_pro.idd set_showing TRUE}
-            {drum_pro.idd set_showing TRUE}
-            {keys_pro.idd set_showing TRUE}
-            ;{$this fade_diffs 2 3}
-         }
+         {$this rings_show TRUE}
+         {$this rings_show FALSE}
       }
    )
    (dx_diff_setter
