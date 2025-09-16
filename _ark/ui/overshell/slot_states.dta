@@ -756,6 +756,8 @@
          {set $this_state dxState_TextureMenu}
          {$this show_state kState_OptionsExtras}
       }
+      ;HACK dx settings fucks up the display num on this list in game so just hard set it back whatever sure
+      {if {$this in_game} {options.lst set display_num 6}}
    )
    (update_view
       {handle ($this update_online_options_allowed {! {session_mgr is_busy}})}
