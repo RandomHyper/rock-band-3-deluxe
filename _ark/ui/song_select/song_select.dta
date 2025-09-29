@@ -512,6 +512,16 @@
          }
       }
    )
+   (dx_user_sort
+      ($int)
+      {if {&& {!= {eval {var {sprint "dx_song_select_sort_setting_" $int}}} none} {gamemode in_mode qp_coop}}
+         {song_select_filter_panel filter_enter}
+         {{music_library get view_settings_provider} select_setting $int}
+         {{music_library get view_settings_provider} select_setting_option {eval {var {sprint "dx_song_select_sort_setting_" $int}}}}
+         {music_library report_sort_and_filters}
+         {song_select_filter_panel filter_exit}
+      }
+   )
    (dx_more_info_load
       {if {song.lst is_scrolling}
          {if {exists author_finder}
@@ -1352,6 +1362,7 @@
       {setlist.lst set_provider {music_library get setlist_provider}}
       {$this refresh_setlist}
       {$this refresh_sort [waiting_for_sort]}
+      {$this dx_user_sort 1}
       {dx_song_select_enter}
       #ifdef HX_WII
       {rnd set_in_game TRUE}

@@ -106,6 +106,8 @@
    (enter
       {all.grp set_showing FALSE}
       {recoil.trg trigger}
+      {set [waiting_for_sort_option] 0}
+      {set [is_wanted_sort_option] FALSE}
       {do
          ($main_provider {music_library get view_settings_provider})
          {settings.lst set_provider $main_provider}
@@ -118,6 +120,8 @@
       {settings.lst refresh}
       {options.lst refresh}
    )
+   (waiting_for_sort_option 0)
+   (is_wanted_sort_option FALSE)
    (filter_enter
       {if {! [filter_mode]}
          {set [filter_mode] TRUE}
@@ -184,11 +188,17 @@
                   {$main_provider set_to_setting_options options.lst}
                   {options.trg trigger}
                   {options.lst refresh}
+                  {if {== {settings.lst selected_data} 1}
+                     {set [waiting_for_sort_option] {settings.lst selected_data}}
+                     {set [is_wanted_sort_option] TRUE}
+                  }
+                  
                   {$this set_focus options.lst}
                   {options.lst set_selected_simulate_scroll
                      {$main_provider starting_option}
                      $user
                   }
+                  
                }
                {do
                   {push_basic_confirm_dialog tour_filter_locked}
@@ -208,6 +218,12 @@
             {unless {$main_provider can_select_multiple_options}
                {settings.trg trigger}
                {$this set_focus settings.lst}
+               {if [is_wanted_sort_option]
+                  {set_var {sprint "dx_song_select_sort_setting_" [waiting_for_sort_option]} {options.lst selected_data}}
+                  {dx_values_dta_writer}
+                  {set [is_wanted_sort_option] FALSE}
+               }
+               {set [waiting_for_sort_option] 0}
             }
          }
       }

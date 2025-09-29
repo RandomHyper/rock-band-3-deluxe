@@ -452,6 +452,8 @@ DX_CURRENT_SONG_CLEAR
 {set $rb3e_party_ip FALSE}
 #endif
 
+{set $dx_song_select_sort_setting_1 none}
+
 ;set mtv vars, trainer doesn't like these empty on boot
 ;{set $artistvar "No Artist Found"}
 ;{set $yearvar "No Year Found"}
