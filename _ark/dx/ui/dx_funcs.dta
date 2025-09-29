@@ -307,6 +307,9 @@
 }
 #ifdef RB3E
 {func rb3e_allowed
+   {if {<= $rb3e_update_warn 3}
+      {++ $rb3e_update_warn}
+   }
    {do
       ($return FALSE)
       #ifdef RB3E_HAS_VERSION
@@ -319,7 +322,9 @@
       }
       #endif
       {if {! $return}
-         {dx_modal_messenger rb3e_update_warn}
+         {if {<= $rb3e_update_warn 3}
+            {dx_modal_messenger rb3e_update_warn}
+         }
       }
       $return
    }
