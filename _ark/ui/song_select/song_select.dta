@@ -515,11 +515,15 @@
    (dx_user_sort
       ($int)
       {if {&& {!= {eval {var {sprint "dx_song_select_sort_setting_" $int}}} none} {gamemode in_mode qp_coop}}
-         {song_select_filter_panel filter_enter}
-         {{music_library get view_settings_provider} select_setting $int}
-         {{music_library get view_settings_provider} select_setting_option {eval {var {sprint "dx_song_select_sort_setting_" $int}}}}
-         {music_library report_sort_and_filters}
-         {song_select_filter_panel filter_exit}
+         {if {! $stored_sorted}
+            ;sort via the stored setting, but only once
+            {set $stored_sorted TRUE}
+            {song_select_filter_panel filter_enter}
+            {{music_library get view_settings_provider} select_setting $int}
+            {{music_library get view_settings_provider} select_setting_option {eval {var {sprint "dx_song_select_sort_setting_" $int}}}}
+            {music_library report_sort_and_filters}
+            {song_select_filter_panel filter_exit}
+         }
       }
    )
    (dx_more_info_load
