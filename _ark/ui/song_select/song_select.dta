@@ -521,6 +521,9 @@
             {song_select_filter_panel filter_enter}
             {{music_library get view_settings_provider} select_setting 1}
             {{music_library get view_settings_provider} select_setting_option $dx_song_select_sort_setting_1}
+            {if {== $dx_song_select_sort_setting_1 1}
+               {set $sort_check_2 TRUE}
+            }
             {music_library report_sort_and_filters}
             {song_select_filter_panel filter_exit}
          }
