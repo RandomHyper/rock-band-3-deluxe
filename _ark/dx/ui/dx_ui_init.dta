@@ -1217,5 +1217,5 @@ DX_CURRENT_SONG_CLEAR
 }
 #endif
 #ifdef HX_WII
-{set $dx_debug 1}
+{set $debug_mode 1}
 #endif

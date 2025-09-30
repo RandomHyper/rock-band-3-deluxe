@@ -99,7 +99,7 @@
 
       {set $dx_random_number {random_int 0 500}}
       {if {== $dx_random_number 1}
-         {if $dx_debug
+         {if $debug_mode
             {set $dx_splash_beta_egg TRUE}
          }
       }

@@ -209,28 +209,28 @@
    {dx_read_setting dx_auto_endgame}
    {dx_read_setting dx_mic_deploy_sens}
    {if {== {elem $entry 0} {basename dx_chat_preset}}
-      {set $dx_chat_preset_0
+      {set $dx_chat_preset_1
          {elem {elem {find $entry dx_chat_preset} 1} 0}
       }
-      {set $dx_chat_preset_1
+      {set $dx_chat_preset_2
          {elem {elem {find $entry dx_chat_preset} 1} 1}
       }
-      {set $dx_chat_preset_2
+      {set $dx_chat_preset_3
          {elem {elem {find $entry dx_chat_preset} 1} 2}
       }
-      {set $dx_chat_preset_3
+      {set $dx_chat_preset_4
          {elem {elem {find $entry dx_chat_preset} 1} 3}
       }
-      {set $dx_chat_preset_4
+      {set $dx_chat_preset_5
          {elem {elem {find $entry dx_chat_preset} 1} 4}
       }
-      {set $dx_chat_preset_5
+      {set $dx_chat_preset_6
          {elem {elem {find $entry dx_chat_preset} 1} 5}
       }
-      {set $dx_chat_preset_6
+      {set $dx_chat_preset_7
          {elem {elem {find $entry dx_chat_preset} 1} 6}
       }
-      {set $dx_chat_preset_7
+      {set $dx_chat_preset_8
          {elem {elem {find $entry dx_chat_preset} 1} 7}
       }
    }
