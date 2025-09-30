@@ -208,20 +208,151 @@
    {dx_read_setting dx_air_guitar}
    {dx_read_setting dx_auto_endgame}
    {dx_read_setting dx_mic_deploy_sens}
-   {dx_read_num_of_settings 7 dx_chat_preset dx_chat_preset_}
+   {if {== {elem $entry 0} {basename dx_chat_preset}}
+      {set $dx_chat_preset_0
+         {elem {elem {find $entry dx_chat_preset} 1} 0}
+      }
+      {set $dx_chat_preset_1
+         {elem {elem {find $entry dx_chat_preset} 1} 1}
+      }
+      {set $dx_chat_preset_2
+         {elem {elem {find $entry dx_chat_preset} 1} 2}
+      }
+      {set $dx_chat_preset_3
+         {elem {elem {find $entry dx_chat_preset} 1} 3}
+      }
+      {set $dx_chat_preset_4
+         {elem {elem {find $entry dx_chat_preset} 1} 4}
+      }
+      {set $dx_chat_preset_5
+         {elem {elem {find $entry dx_chat_preset} 1} 5}
+      }
+      {set $dx_chat_preset_6
+         {elem {elem {find $entry dx_chat_preset} 1} 6}
+      }
+      {set $dx_chat_preset_7
+         {elem {elem {find $entry dx_chat_preset} 1} 7}
+      }
+   }
    {dx_read_setting dx_anim_genres}
 )
 #define LOADING_TRACK_THEME_OPTIONS
 (
    {dx_read_setting_with_name track_theme_name dx_track_theme_name}
-   {dx_read_num_of_settings 4 dx_guitar_gem_color dx_guitar_gem_color}
-   {dx_read_num_of_settings 4 dx_guitar_sustain_color dx_guitar_sustain_color}
-   {dx_read_num_of_settings 4 dx_guitar_smasher_color dx_guitar_smasher_color}
-   {dx_read_num_of_settings 3 drum_smasher_colors dx_drum_smasher_color}
-   {dx_read_num_of_settings 3 drum_tom_colors dx_drum_tom_color}
-   {dx_read_num_of_settings 3 drum_cymbal_color dx_drum_cymbal_color}
+   {if {== {elem $entry 0} {basename dx_guitar_gem_color}}
+      {set $dx_guitar_gem_color1
+         {elem {elem {find $entry dx_guitar_gem_color} 1} 0}
+      }
+      {set $dx_guitar_gem_color2
+         {elem {elem {find $entry dx_guitar_gem_color} 1} 1}
+      }
+      {set $dx_guitar_gem_color3
+         {elem {elem {find $entry dx_guitar_gem_color} 1} 2}
+      }
+      {set $dx_guitar_gem_color4
+         {elem {elem {find $entry dx_guitar_gem_color} 1} 3}
+      }
+      {set $dx_guitar_gem_color5
+         {elem {elem {find $entry dx_guitar_gem_color} 1} 4}
+      }
+   }
+   {if {== {elem $entry 0} {basename dx_guitar_sustain_color}}
+      {set $dx_guitar_sustain_color1
+         {elem {elem {find $entry dx_guitar_sustain_color} 1} 0}
+      }
+      {set $dx_guitar_sustain_color2
+         {elem {elem {find $entry dx_guitar_sustain_color} 1} 1}
+      }
+      {set $dx_guitar_sustain_color3
+         {elem {elem {find $entry dx_guitar_sustain_color} 1} 2}
+      }
+      {set $dx_guitar_sustain_color4
+         {elem {elem {find $entry dx_guitar_sustain_color} 1} 3}
+      }
+      {set $dx_guitar_sustain_color5
+         {elem {elem {find $entry dx_guitar_sustain_color} 1} 4}
+      }
+   }
+   {if {== {elem $entry 0} {basename dx_guitar_smasher_color}}
+      {set $dx_guitar_smasher_color1
+         {elem {elem {find $entry dx_guitar_smasher_color} 1} 0}
+      }
+      {set $dx_guitar_smasher_color2
+         {elem {elem {find $entry dx_guitar_smasher_color} 1} 1}
+      }
+      {set $dx_guitar_smasher_color3
+         {elem {elem {find $entry dx_guitar_smasher_color} 1} 2}
+      }
+      {set $dx_guitar_smasher_color4
+         {elem {elem {find $entry dx_guitar_smasher_color} 1} 3}
+      }
+      {set $dx_guitar_smasher_color5
+         {elem {elem {find $entry dx_guitar_smasher_color} 1} 4}
+      }
+   }
+   {if {== {elem $entry 0} {basename drum_smasher_colors}}
+      {set $dx_drum_smasher_color1
+         {elem {elem {find $entry drum_smasher_colors} 1} 0}
+      }
+      {set $dx_drum_smasher_color2
+         {elem {elem {find $entry drum_smasher_colors} 1} 1}
+      }
+      {set $dx_drum_smasher_color3
+         {elem {elem {find $entry drum_smasher_colors} 1} 2}
+      }
+      {set $dx_drum_smasher_color4
+         {elem {elem {find $entry drum_smasher_colors} 1} 3}
+      }
+   }
+   {if {== {elem $entry 0} {basename drum_tom_colors}}
+      {set $dx_drum_tom_color1
+         {elem {elem {find $entry drum_tom_colors} 1} 0}
+      }
+      {set $dx_drum_tom_color2
+         {elem {elem {find $entry drum_tom_colors} 1} 1}
+      }
+      {set $dx_drum_tom_color3
+         {elem {elem {find $entry drum_tom_colors} 1} 2}
+      }
+      {set $dx_drum_tom_color4
+         {elem {elem {find $entry drum_tom_colors} 1} 3}
+      }
+   }
+   {if {== {elem $entry 0} {basename drum_cymbal_color}}
+      {set $dx_drum_cymbal_color1
+         {elem {elem {find $entry drum_cymbal_color} 1} 0}
+      }
+      {set $dx_drum_cymbal_color2
+         {elem {elem {find $entry drum_cymbal_color} 1} 1}
+      }
+      {set $dx_drum_cymbal_color3
+         {elem {elem {find $entry drum_cymbal_color} 1} 2}
+      }
+      {set $dx_drum_cymbal_color4
+         {elem {elem {find $entry drum_cymbal_color} 1} 3}
+      }
+   }
    {dx_read_setting dx_kick_color}
-   {dx_read_num_of_settings 5 protar_gem_color dx_protar_color}
+   {if {== {elem $entry 0} {basename protar_gem_color}}
+      {set $dx_protar_color1
+         {elem {elem {find $entry protar_gem_color} 1} 0}
+      }
+      {set $dx_protar_color2
+         {elem {elem {find $entry protar_gem_color} 1} 1}
+      }
+      {set $dx_protar_color3
+         {elem {elem {find $entry protar_gem_color} 1} 2}
+      }
+      {set $dx_protar_color4
+         {elem {elem {find $entry protar_gem_color} 1} 3}
+      }
+      {set $dx_protar_color5
+         {elem {elem {find $entry protar_gem_color} 1} 4}
+      }
+      {set $dx_protar_color6
+         {elem {elem {find $entry protar_gem_color} 1} 5}
+      }
+   }
    {dx_read_setting_with_name highway_guitar dx_highway_guitar}
    {dx_read_setting_with_name highway_real_guitar dx_highway_real_guitar}
    {dx_read_setting_with_name highway_bass dx_highway_bass}
