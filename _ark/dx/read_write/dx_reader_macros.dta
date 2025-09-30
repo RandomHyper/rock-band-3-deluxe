@@ -1560,6 +1560,31 @@
          {elem {find $entry dx_song_select_sort_setting_1} 1}
       }
    }
+   {if {== {elem $entry 0} {basename dx_song_select_score_setting_strings}}
+      {set $dx_song_select_score_setting_strings
+         {elem {find $entry dx_song_select_score_setting_strings} 1}
+      }
+   }
+   {if {== {elem $entry 0} {basename dx_song_select_score_setting_drums}}
+      {set $dx_song_select_score_setting_drums
+         {elem {find $entry dx_song_select_score_setting_drums} 1}
+      }
+   }
+   {if {== {elem $entry 0} {basename dx_song_select_score_setting_vocals}}
+      {set $dx_song_select_score_setting_vocals
+         {elem {find $entry dx_song_select_score_setting_vocals} 1}
+      }
+   }
+   {if {== {elem $entry 0} {basename dx_song_select_score_setting_keys}}
+      {set $dx_song_select_score_setting_keys
+         {elem {find $entry dx_song_select_score_setting_keys} 1}
+      }
+   }
+   {if {== {elem $entry 0} {basename dx_song_select_score_setting_pro_strings}}
+      {set $dx_song_select_score_setting_pro_strings
+         {elem {find $entry dx_song_select_score_setting_pro_strings} 1}
+      }
+   }
    {if {== {elem $entry 0} {basename dx_entered_play_a_show}}
       {set $dx_entered_play_a_show
          {elem {find $entry dx_entered_play_a_show} 1}

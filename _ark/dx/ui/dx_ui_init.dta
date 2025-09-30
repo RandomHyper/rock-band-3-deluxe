@@ -453,6 +453,11 @@ DX_CURRENT_SONG_CLEAR
 #endif
 
 {set $dx_song_select_sort_setting_1 none}
+{set $dx_song_select_score_setting_strings none}
+{set $dx_song_select_score_setting_drums none}
+{set $dx_song_select_score_setting_vocals none}
+{set $dx_song_select_score_setting_keys none}
+{set $dx_song_select_score_setting_pro_strings none}
 
 ;set mtv vars, trainer doesn't like these empty on boot
 ;{set $artistvar "No Artist Found"}
