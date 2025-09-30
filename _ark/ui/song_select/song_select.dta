@@ -584,6 +584,7 @@
    )
    (rb3e_author_finder
       ($shortname)
+      {set $authorvar FALSE}
       {set $namevar FALSE}
       {set $artistvar FALSE}
       {set $albumvar FALSE}
