@@ -130,6 +130,9 @@
          {set $dx_season standard}
       }
       {{{{sv8_panel find sv8_a} find cityscape_ao} find logo.tex} set_bitmap {sprint "dx/custom_textures/_additional_textures/logo-" $dx_season #ifdef RB3E "-rb3e" #endif ".png"}}
+      {if {== $dx_season halloween}
+         {{{{sv8_panel find sv8_a} find cityscape_ao} find moon.tex} set_bitmap "dx/custom_textures/_additional_textures/blood_moon.png"}
+      }
       {if {== $dx_splash_beta_egg TRUE}
          {{{{sv8_panel find sv8_a} find cityscape_ao} find logo.mesh} set_showing FALSE}
       }
