@@ -53,6 +53,9 @@
                 {$this send_update_msg}
             )
             (delete_char
+                {if {== {strlen [buf]} 0}
+                    {[sink_obj] input_field_overdelete}
+                }
                 {if_else {$this has_highlight}
                     {$this erase_highlight}
                     {if {> [caret] 0}
@@ -291,19 +294,48 @@
     }
 }
 
-{func dx_keyboard_handler ($key $shift $ctrl $alt)
-    {if_else {== {char $key} "`"}
-        {do
-            {with overshell
-                {unless {find_elem {slots.grp get_array objects} {object dx_console}}
-                    {slots.grp add_object dx_console}
-                }
-            }
-            {if_else {dx_console get is_open}
-                {dx_console close}
-                {dx_console open}
+#ifdef DX_CONSOLE
+{func try_toggle_console
+    {do
+        {with overshell
+            {unless {find_elem {slots.grp get_array objects} {object dx_console}}
+                {slots.grp add_object dx_console}
             }
         }
+        {if_else {dx_console get is_open}
+            {dx_console close}
+            {dx_console open}
+        }
+    }
+}
+; Shortcut for opening the console by pressing enter without any text fields focused
+; Intended for the 360 chatpad, where pressing backtick isn't very easy and also causes some other characters to be entered.
+{func enter_console_shortcut ($key)
+    {do 
+        ($out FALSE)
+        {if {!= {type $focused_input_field} kDataObject}
+            {unless {dx_console get is_open}
+                {if {== $key 10}
+                    {set $out TRUE}
+                }
+            }
+        }
+        $out
+    }
+}
+#else
+; Do nothing!
+{func try_toggle_console
+    kDataUnhandled
+}
+{func enter_console_shortcut ($key)
+    FALSE
+}
+#endif
+
+{func dx_keyboard_handler ($key $shift $ctrl $alt)
+    {if_else {|| {== {char $key} "`"} {enter_console_shortcut $key}}
+        {try_toggle_console}
         {do
             {if_else {!= {type $focused_input_field} kDataObject}
                 {do

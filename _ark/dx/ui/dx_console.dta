@@ -55,16 +55,23 @@
     }
 }
 
+#define MAX_LOGLINES (23)
+
 {new RndDir dx_console
     (input_field_accept ($field $text)
-        {$this print_log {sprint "] " $text}}
-        {set $text {sprint "{" $text "}"}}
-        {set $cmd {sym_array {split_str $text " "}}}
-        {write_file {sprint DX_GAMEDATA_ROOT "console_exec.dta"} $cmd}
-        {$this print_log {sprint {with [console_this] {run {sprint DX_GAMEDATA_ROOT "console_exec.dta"}}}}}
-        {cmd.input set_text ""}
-        {cmd.input set_focused}
+        {if {> {strlen $text} 0}
+            {$this print_log {sprint "] " $text}}
+            {set $text {sprint "{" $text "}"}}
+            {set $cmd {sym_array {split_str $text " "}}}
+            {write_file {sprint DX_GAMEDATA_ROOT "console_exec.dta"} $cmd}
+            {$this print_log {sprint {with [console_this] {run {sprint DX_GAMEDATA_ROOT "console_exec.dta"}}}}}
+            {cmd.input set_text ""}
+            {cmd.input set_focused}
+        }
         ;{$this close}
+    )
+    (input_field_overdelete
+        {$this close}
     )
     (open
         {slide.anim animate (dest 1) (period 0.25) (units kTaskUISeconds)}
@@ -79,8 +86,11 @@
     (update_log
         {do
             ($buf "")
+            {if {> {size [loglines]} MAX_LOGLINES}
+                {resize [loglines] MAX_LOGLINES}
+            }
             {foreach $line [loglines]
-                {set $buf {sprint $buf "\n" $line}}
+                {set $buf {sprint $line "\n" $buf}}
             }
             {log.lbl set_token_fmt stringify $buf}
         }
@@ -94,6 +104,7 @@
         {$this update_log}
     )
 }
+#define DX_CONSOLE_HEIGHT (350)
 {with dx_console
     {$this set_local_pos 0 0 214}
     {new Mesh bg.mesh}
@@ -107,34 +118,42 @@
     {dx_create_input_field cmd.input}
     {cmd.input set_trans_parent $this}
     {cmd.input set draw_order 1000}
-    {cmd.input set_local_pos -400 0 0}
     {{cmd.input label} set width 840}
     {cmd.input set unfocus_on_accept FALSE}
     {cmd.input set_sink $this}
-    {dx_generate_quad_mesh bg.mesh 848 50}
+    {dx_generate_quad_mesh bg.mesh 848 350}
+    {bg.mesh set_local_pos 0 0 {/ DX_CONSOLE_HEIGHT -2}}
 
     {new BandLabel log.lbl}
-    {log.lbl set resource_name pentatonic_outline}
+    {log.lbl set resource_name default}
     {log.lbl set text_size 15}
-    {log.lbl set alignment kTopLeft}
+    {log.lbl set alignment kBottomLeft}
     {log.lbl set width 835}
     {log.lbl set height 400}
-    {log.lbl set_local_pos -400 0 -27}
     {log.lbl set_trans_parent $this}
+    {log.lbl set draw_order 1000}
 
     {new PropAnim slide.anim}
 
     {slide.anim add_keys $this (position) kPropVector3}
-    {slide.anim set_key_val $this (position) 0 (0 0 269)}
-    {slide.anim set_key_val $this (position) 1 (0 0 214)}
+    {slide.anim set_key_val $this (position) 0 (0 0 {+ 240 DX_CONSOLE_HEIGHT})}
+    {slide.anim set_key_val $this (position) 1 (0 0 240)}
     {slide.anim set_interp_type $this (position) kPropHermite}
 
-    {slide.anim add_keys log.lbl (alpha) kPropFloat}
-    {slide.anim set_key_val log.lbl (alpha) 0 0}
-    {slide.anim set_key_val log.lbl (alpha) 1 1}
-    {slide.anim set_interp_type log.lbl (alpha) kPropHermite}
+    ;{slide.anim add_keys log.lbl (alpha) kPropFloat}
+    ;{slide.anim set_key_val log.lbl (alpha) 0 0}
+    ;{slide.anim set_key_val log.lbl (alpha) 1 1}
+    ;{slide.anim set_interp_type log.lbl (alpha) kPropHermite}
+
+    {slide.anim add_keys $this (showing) kPropBool}
+    {slide.anim set_key_val $this (showing) 0 FALSE}
+    {slide.anim set_key_val $this (showing) 0.0001 TRUE}
+    {slide.anim set_key_val $this (showing) 1 TRUE}
 
     {slide.anim set_frame 0}
+
+    {cmd.input set_local_pos -410 0 {- 15 DX_CONSOLE_HEIGHT}}
+    {log.lbl set_local_pos -410 0 {- 25 DX_CONSOLE_HEIGHT}}
 
     {$this set is_open FALSE}
     {$this set loglines {array 0}}
