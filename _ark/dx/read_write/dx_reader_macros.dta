@@ -55,7 +55,7 @@
    {dx_read_setting dx_black_song_transition bool}
    {dx_read_setting dx_default_transitions bool}
 
-   ;{dx_read_setting dx_60fps int}
+   {dx_read_setting dx_60fps int}
    {dx_read_setting emulatefps int}
    {dx_read_setting dx_vsync bool}
 
