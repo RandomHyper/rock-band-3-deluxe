@@ -28,3 +28,11 @@ scripts/dx_build_config.ini
 scripts/kill.bat
 platform/ps3/USRDIR/TRAINERPATCH.BIN
 platform/xbox/TRAINERPATCH.xex
+_ark/char/main/earrings/male/gen/gorillaz_russel.milo_xbox
+_ark/char/main/earrings/male/gen/gorillaz_russel.milo_ps3
+_ark/char/main/earrings/male/gen/gorillaz_murdoc.milo_xbox
+_ark/char/main/earrings/male/gen/gorillaz_murdoc.milo_ps3
+_ark/char/main/earrings/male/gen/gorillaz_2d.milo_xbox
+_ark/char/main/earrings/male/gen/gorillaz_2d.milo_ps3
+_ark/char/main/earrings/female/gen/gorillaz_noodle.milo_xbox
+_ark/char/main/earrings/female/gen/gorillaz_noodle.milo_ps3
