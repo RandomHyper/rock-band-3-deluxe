@@ -18,8 +18,8 @@
             ; Randomly remove half of the metaloops so christmas is more common
             ; Done in two loops because removing elements from an array while you're iterating it is a bad idea
             {foreach $metaloop $dx_metamusic_list
-               {set $num {random_int 0 50}}
-               {if {<= $num 99}
+               {set $num {random_int 0 100}}
+               {if {<= $num 50}
                   {push_back $to_remove $metaloop}
                }
             }
