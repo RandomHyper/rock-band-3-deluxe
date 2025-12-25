@@ -146,9 +146,7 @@
       {if {== $dx_season christmas}
          {dx_get_festive {{sv8_panel find sv8_a} find cityscape_ao}}
       }
-      {if $dx_emulator
-         {dx_optimize_splash {{sv8_panel find sv8_a} find cityscape_ao}}
-      }
+      {dx_optimize_splash {{sv8_panel find sv8_a} find cityscape_ao}}
 
       {if {== $dx_splash_beta_egg FALSE}
          ;setup build label in case GoCentral is overriding our motd
