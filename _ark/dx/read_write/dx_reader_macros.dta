@@ -100,7 +100,7 @@
    {dx_read_setting dx_enable_mv_venues}
    {dx_read_setting dx_end_song_feedback}
    {dx_read_setting dx_you_rock}
-   {dx_read_setting dx_rb3dx_venue}
+   {dx_read_setting_with_name dx_rb3dx_venue dx_venue}
    {dx_read_setting dx_joypad_type_guitar}
    {dx_read_setting dx_joypad_type_keys}
    {dx_read_setting dx_joypad_type_vocals}
