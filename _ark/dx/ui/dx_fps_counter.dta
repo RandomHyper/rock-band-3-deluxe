@@ -11,8 +11,8 @@
     (do_poll
         ; TODO: Possibly use something akin to a ring buffer with moving indices
         {insert_elem [samples] 0 {taskmgr ui_delta_seconds}}
-        {if {> {size [samples]} 240}
-            {resize [samples] 240}
+        {if {> {size [samples]} 60}
+            {resize [samples] 60}
         }
         {set $sum 0}
         {set $min 99999}
@@ -27,7 +27,7 @@
             }
         }
         {set $avg {/ $sum {size [samples]}}}
-        {set $fps {int {/ 1.0 $avg}}}
+        {set $fps {round {/ 1.0 $avg}}}
         {set $text {sprintf "<alt>%i</alt> fps (<alt>%.0f</alt>ms avg, <alt>%.0f</alt>ms min, <alt>%.0f</alt>ms max)" $fps {* $avg 1000} {* $min 1000} {* $max 1000}}}
         {fps.lbl set_token_fmt stringify $text}
         {set $width {fps.lbl get_string_width $text}}
