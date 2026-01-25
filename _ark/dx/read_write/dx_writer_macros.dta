@@ -82,10 +82,10 @@
    {dx_setting_saver dx_settings dx_mtv_line_artist $dx_mtv_line_artist}
    {dx_setting_saver dx_settings dx_mtv_year $dx_mtv_year}
    {dx_setting_saver dx_settings dx_mtv_line_coveredby $dx_mtv_line_coveredby}
-   {dx_setting_saver dx_settings dx_mtv_line_album $dx_mtv_line_album}
+   {dx_setting_saver dx_settings dx_mtv_line_album_name $dx_mtv_line_album_name}
    {dx_setting_saver dx_settings dx_mtv_line_genre $dx_mtv_line_genre}
    {dx_setting_saver dx_settings dx_mtv_line_sub_genre $dx_mtv_line_sub_genre}
-   {dx_setting_saver dx_settings dx_mtv_line_game_origin $dx_mtv_line_game_origin}
+   {dx_setting_saver dx_settings dx_mtv_line_source $dx_mtv_line_source}
    {dx_setting_saver dx_settings dx_mtv_line_author $dx_mtv_line_author}
    {dx_setting_saver dx_settings dx_mtv_line_song_key $dx_mtv_line_song_key}
    {dx_setting_saver dx_settings dx_mtv_line_section $dx_mtv_line_section}

@@ -77,10 +77,10 @@
    {dx_read_setting dx_mtv_line_artist}
    {dx_read_setting dx_mtv_year}
    {dx_read_setting dx_mtv_line_coveredby}
-   {dx_read_setting dx_mtv_line_album}
+   {dx_read_setting dx_mtv_line_album_name}
    {dx_read_setting dx_mtv_line_genre}
    {dx_read_setting dx_mtv_line_sub_genre}
-   {dx_read_setting dx_mtv_line_game_origin}
+   {dx_read_setting dx_mtv_line_source}
    {dx_read_setting dx_mtv_line_author}
    {dx_read_setting dx_mtv_line_song_key}
    {dx_read_setting dx_mtv_line_section}
