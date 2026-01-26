@@ -65348,18 +65348,27 @@
 )
 (behindblueeyes_cover
    (game_origin lost_dlc)
+   (covered_by
+      "WaveGroup"
+   )
    (author
       "Harmonix"
    )
 )
 (brownsugar
    (game_origin lost_dlc)
+   (covered_by
+      "WaveGroup"
+   )
    (author
       "Harmonix"
    )
 )
 (comeasyouare_cover
    (game_origin lost_dlc)
+   (covered_by
+      "WaveGroup"
+   )
    (author
       "Harmonix"
    )
@@ -65390,6 +65399,9 @@
 )
 (wecarealot_cover
    (game_origin lost_dlc)
+   (covered_by
+      "WaveGroup"
+   )
    (author
       "Harmonix"
    )
