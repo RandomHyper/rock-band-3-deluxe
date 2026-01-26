@@ -43906,10 +43906,14 @@
    )
 )
 (UGC_5000101
-   (game_origin ugc1)
+   (game_origin ugc_lost)
    (song
       (vocal_parts 2)
    )
+   (extra_authoring disc_update)
+)
+(UGC_5000196
+   (game_origin ugc_lost)
    (extra_authoring disc_update)
 )
 (UGC_5000202
@@ -65342,6 +65346,24 @@
       "This was one of the first songs to gain popularity via the internet. It was initially promoted by posting a 60-second clip of the track online, followed by airplay in discos and clubs, before finally being released to an eager audience."
    )
 )
+(behindblueeyes_cover
+   (game_origin lost_dlc)
+   (author
+      "Harmonix"
+   )
+)
+(brownsugar
+   (game_origin lost_dlc)
+   (author
+      "Harmonix"
+   )
+)
+(comeasyouare_cover
+   (game_origin lost_dlc)
+   (author
+      "Harmonix"
+   )
+)
 (fuel
    (game_origin lost_dlc)
    (author
@@ -65355,6 +65377,18 @@
    )
 )
 (laventurier
+   (game_origin lost_dlc)
+   (author
+      "Harmonix"
+   )
+)
+(pinballwizard_rb1
+   (game_origin lost_dlc)
+   (author
+      "Harmonix"
+   )
+)
+(wecarealot_cover
    (game_origin lost_dlc)
    (author
       "Harmonix"
