@@ -436,7 +436,6 @@
 }
 
 {func dx_load_synth ($synth)
-   {set $iwanttologstuff TRUE}
    {if {game is_instrument_synth_on}
       {game toggle_instrument_synth}
    }
