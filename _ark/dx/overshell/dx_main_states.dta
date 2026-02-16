@@ -357,62 +357,56 @@
    )
 
    (dxState_InstrumentOffsetSettings
-      (view
-         {sprintf {localize os_instrument_offset_guitar} $dx_offset_guitar}
-         {sprintf {localize os_instrument_offset_drums} $dx_offset_drums}
-         os_exit_offset_settings
-      )
-      (scroll_disabled)
-      (enter
-         {$current_list set_selected 0}
-         {set $dx_list_item_selected TRUE}
-      )
-      (select
-         (os_exit_offset_settings
-            {set $dx_list_item_selected FALSE}
-            {dx_state dxState_DeluxeSettings}
-         )
-      )
-      (button
-         #define OFFSET_LEFT_RIGHT
-         (
-            {set $i
-               {switch {$current_list selected_data}
-                  (0 $dx_offset_guitar)
-                  (1 $dx_offset_drums)
-                  0
-               }
-            }
-            {set $i
-               {switch $action
-                  (kAction_Left {- $i 1})
-                  (kAction_Right {+ $i 1})
-               }
-            }
-            ;limit offset from -300 to 300
-            {if {> $i 300} {set $i 300}}
-            {if {< $i -300} {set $i -300}}
-            ;set new offset value
-            {switch {$current_list selected_data}
-               (0 {set $dx_offset_guitar $i})
-               (1 {set $dx_offset_drums $i})
-               kDataUnhandled
-            }
-         )
-         (kAction_Left OFFSET_LEFT_RIGHT)
-         (kAction_Right OFFSET_LEFT_RIGHT)
-         (kAction_Up kDataUnhandled)
-         (kAction_Down kDataUnhandled)
-         (kAction_Confirm kDataUnhandled)
-         (kAction_Cancel kDataUnhandled)
-         (kAction_Start
-            {set $dx_list_item_selected FALSE}
-            {dx_state dxState_DeluxeSettings}
-         )
-      )
-      (cancel
+   (view
+      {sprintf {localize os_instrument_offset_guitar} $dx_offset_guitar}
+      {sprintf {localize os_instrument_offset_drums} $dx_offset_drums}
+      os_exit_offset_settings
+   )
+   (enter
+      {$current_list set_selected 0}
+      {set $dx_list_item_selected TRUE}
+   )
+   (select
+      (os_exit_offset_settings
+         {set $dx_list_item_selected FALSE}
          {dx_state dxState_DeluxeSettings}
       )
+   )
+   (button
+   #define OFFSET_LEFT_RIGHT
+   (
+      {set $i
+         {switch {$current_list selected_data}
+            (0 $dx_offset_guitar)
+            (1 $dx_offset_drums)
+            0
+         }
+      }
+      {set $i
+         {switch $action
+            (kAction_Left {- $i 1})
+            (kAction_Right {+ $i 1})
+         }
+      }
+      ;limit offset from -300 to 300
+      {if {> $i 300} {set $i 300}}
+      {if {< $i -300} {set $i -300}}
+      ;set new offset value
+      {switch {$current_list selected_data}
+         (0 {set $dx_offset_guitar $i})
+         (1 {set $dx_offset_drums $i})
+         kDataUnhandled
+      }
+   )
+   (kAction_Left OFFSET_LEFT_RIGHT)
+   (kAction_Right OFFSET_LEFT_RIGHT)
+   (kAction_Confirm kDataUnhandled)
+   (kAction_Cancel kDataUnhandled)
+   (kAction_Start
+      {set $dx_list_item_selected FALSE}
+      {dx_state dxState_DeluxeSettings}
+   )
+)
    )
 
    (dxState_AngleMenu
