@@ -87,6 +87,8 @@
    {dx_read_setting dx_mtv_line_bpm}
    {dx_read_setting dx_countdown_enabled}
    {dx_read_setting dx_song_select_rings}
+   {dx_read_setting dx_offset_guitar}
+   {dx_read_setting dx_offset_drums}
    #ifndef RB3E
    {dx_read_setting dx_more_info_toggle}
    #endif

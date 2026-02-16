@@ -23,6 +23,21 @@
    (num_gems_miss 0) ;default setup state and storage for note counters
    (num_gems_pass 0) ;default setup state and storage for note counters
 }
+
+;helper function to get per-instrument offset delay in milliseconds
+{func dx_get_instrument_offset
+   ($instrument)
+   {switch $instrument
+      (guitar $dx_offset_guitar)
+      (bass $dx_offset_guitar)
+      (real_guitar $dx_offset_guitar)
+      (real_bass $dx_offset_guitar)
+      (drum $dx_offset_drums)
+      (real_drum $dx_offset_drums)
+      0 ;default for vocals and other instruments
+   }
+}
+
 {func dx_create_instrument_callback
    ($instrument $player $slot)
    {set_var {sprint "dx_perfects_count_" $player} 0} ;shove this here so it resets for a player when callback is added
@@ -47,7 +62,7 @@
             (script
                {if {&& $dx_perfects_indicator {{[player] get_user} is_local} {== [diff] expert} {gamemode in_mode qp_coop}}
                   ;calculate this as early as possible for accuracy
-                  {set [curr_ms] {+ {* {taskmgr seconds} 1000} {profile_mgr get_sync_offset {{[player] get_user} get_pad_num}}}}
+                  {set [curr_ms] {+ {* {taskmgr seconds} 1000} {+ {profile_mgr get_sync_offset {{[player] get_user} get_pad_num}} {dx_get_instrument_offset [track_instrument]}}}}
                   {set [offset] FALSE}
                   {set [accuracy] -8675309}
                   ;[note_time] is also used in a commented debug line

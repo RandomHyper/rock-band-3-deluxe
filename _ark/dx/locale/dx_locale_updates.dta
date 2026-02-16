@@ -90,6 +90,13 @@
 (os_exit_cal_one "Press START to")
 (os_exit_cal_two "exit this menu")
 
+; Per-Instrument Offset Settings
+(os_instrument_offsets "Per-Instrument Offsets...")
+(os_instrument_offsets_desc "Adjust individual offset delays for guitar and drums")
+(os_instrument_offset_guitar "Guitar Offset: %dms")
+(os_instrument_offset_drums "Drums Offset: %dms")
+(os_exit_offset_settings "Exit")
+
 ; Cache warn
 #ifdef RB3E
 (dx_cache_warn_btn "Clear and reboot game")
